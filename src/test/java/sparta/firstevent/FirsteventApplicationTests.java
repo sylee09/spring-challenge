@@ -1,10 +1,10 @@
-package org.zerock.springchallenge;
+package sparta.firstevent;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringChallengeApplicationTests {
+class FirsteventApplicationTests {
 
     @Test
     void contextLoads() {
