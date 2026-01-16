@@ -60,7 +60,7 @@ class EventTest {
 
     @Test
     void participate() {
-        Member member = new Member("email", "password", "nickname");
+        Member member = Member.enroll("email", "password", "nickname");
 
         event.start();
         event.participate(member, determinator);
@@ -73,7 +73,7 @@ class EventTest {
         // 동일 회원이 중복 참여하는 경우
         Event event = EventFixture.registEventWithCapa(2);
 
-        Member member = new Member("email", "password", "nickname");
+        Member member = Member.enroll("email", "password", "nickname");
 
         event.start();
         event.participate(member, determinator);
@@ -83,7 +83,7 @@ class EventTest {
                 .hasMessage("이벤트에는 중복 참여할 수 없습니다.");
 
         // 참여자수가 만족되어 이벤트가 종료되었는데 참여하는 경우
-        Member member2 = new Member("email2", "password", "nickname");
+        Member member2 = Member.enroll("email2", "password", "nickname");
 
         Event event2 = EventFixture.registEventWithCapa(1);
 
