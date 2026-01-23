@@ -1,8 +1,19 @@
 package sparta.firstevent.domain.event;
 
+import sparta.firstevent.adapter.dto.EventRequestDto;
+
 import java.time.LocalDateTime;
 
 public class EventFixture {
+
+    public static EventRequestDto createEventRequestDto() {
+        return createEventRequestDto("title");
+    }
+
+    public static EventRequestDto createEventRequestDto(String title) {
+        return new EventRequestDto(title, "desc", 10, LocalDateTime.now(), LocalDateTime.now().plusDays(1));
+    }
+
     public static Event registEvent() {
         return registEventWithCapa(10);
     }
