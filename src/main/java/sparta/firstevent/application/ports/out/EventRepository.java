@@ -1,7 +1,10 @@
 package sparta.firstevent.application.ports.out;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.Repository;
 import sparta.firstevent.domain.event.Event;
+import sparta.firstevent.domain.event.EventStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,5 +14,9 @@ public interface EventRepository extends Repository<Event, Long> {
 
     Optional<Event> findById(Long id);
 
-    List<Event> findAll();
+    Optional<Event> findByIdAndStatus(Long id, EventStatus status);
+
+    Page<Event> findAll(Pageable pageable);
+
+    void delete(Event event);
 }

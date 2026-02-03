@@ -4,16 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import sparta.firstevent.application.ports.in.EventGetUseCase;
+import sparta.firstevent.application.ports.in.AdminEventGetUseCase;
 import sparta.firstevent.application.ports.out.EventRepository;
 import sparta.firstevent.domain.event.Event;
-import sparta.firstevent.domain.event.EventStatus;
+import sparta.firstevent.domain.event.Participant;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class EventQueryService implements EventGetUseCase {
+public class AdminEventQueryService implements AdminEventGetUseCase {
     private final EventRepository eventRepository;
 
     @Override
@@ -22,13 +22,12 @@ public class EventQueryService implements EventGetUseCase {
     }
 
     @Override
-    public Event get(Long id) {
+    public Event get(long id) {
         return eventRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("id에 해당하는 이벤트가 없습니다."));
     }
 
     @Override
-    public Event getWithStatus(Long id, EventStatus status) {
-        return eventRepository.findByIdAndStatus(id, status)
-                .orElseThrow(() -> new IllegalArgumentException("id에 해당하는 이벤트가 없습니다."));
+    public List<Participant> getWinners(long eventId) {
+        return List.of();
     }
 }

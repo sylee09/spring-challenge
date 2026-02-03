@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class EventFixture {
 
     public static EventRequestDto createEventRequestDto() {
-        return createEventRequestDto("title");
+        return createEventRequestDto("title length is");
     }
 
     public static EventRequestDto createEventRequestDto(String title) {
@@ -18,7 +18,7 @@ public class EventFixture {
         return registEventWithCapa(10);
     }
 
-    public static Event registEventWithCapa(int capacity) {
+    public static Event registEventWithCapa(Integer capacity) {
         return Event.regist("title", "desc", capacity,
                 LocalDateTime.now(), LocalDateTime.now().plusDays(1));
     }
@@ -44,5 +44,4 @@ public class EventFixture {
             }
         };
     }
-
 }

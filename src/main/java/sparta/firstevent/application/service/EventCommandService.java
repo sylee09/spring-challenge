@@ -1,28 +1,22 @@
 package sparta.firstevent.application.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sparta.firstevent.adapter.dto.EventRequestDto;
+import sparta.firstevent.application.ports.in.EventGetUseCase;
 import sparta.firstevent.application.ports.in.EventManageUseCase;
+import sparta.firstevent.application.ports.in.MemberGetUseCase;
 import sparta.firstevent.application.ports.out.EventRepository;
+import sparta.firstevent.domain.event.Determinator;
 import sparta.firstevent.domain.event.Event;
 
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class EventCommandService implements EventManageUseCase {
-    private final EventRepository eventRepository;
+    private final MemberGetUseCase memberGetUseCase;
+    private final EventGetUseCase eventGetUseCase;
+    private final Determinator determinator;
 
-    public EventCommandService(EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
-    }
-
-    @Override
-    public Event regist(EventRequestDto requestDto) {
-        return eventRepository.save(Event.regist(requestDto));
-    }
-
-    @Override
-    public Event update(Long id, EventRequestDto eventRequestDto) {
-        Event event = eventRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("id에 해당하는 이벤트가 없습니다."));
-        event.update(eventRequestDto);
-        return event;
-    }
 }

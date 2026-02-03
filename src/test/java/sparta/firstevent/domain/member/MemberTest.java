@@ -27,4 +27,5 @@ class MemberTest {
 
         assertThat(member.getStatus()).isEqualTo(MemberStatus.INACTIVE);
     }
+
 }
