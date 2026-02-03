@@ -11,4 +11,6 @@ public interface EventGetUseCase {
     Event get(Long id);
 
     Event getWithStatus(Long id, EventStatus status);
+
+    Long getParticipantsCount(Long eventId);
 }

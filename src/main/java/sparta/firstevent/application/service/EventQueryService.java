@@ -31,4 +31,9 @@ public class EventQueryService implements EventGetUseCase {
         return eventRepository.findByIdAndStatus(id, status)
                 .orElseThrow(() -> new IllegalArgumentException("id에 해당하는 이벤트가 없습니다."));
     }
+
+    @Override
+    public Long getParticipantsCount(Long eventId) {
+        return eventRepository.getParticipantsCount(eventId);
+    }
 }

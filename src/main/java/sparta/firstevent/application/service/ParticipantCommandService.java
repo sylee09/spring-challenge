@@ -7,6 +7,7 @@ import sparta.firstevent.application.ports.in.EventGetUseCase;
 import sparta.firstevent.application.ports.in.MemberGetUseCase;
 import sparta.firstevent.application.ports.in.ParticipantGetUseCase;
 import sparta.firstevent.application.ports.in.ParticipantManageUseCase;
+import sparta.firstevent.application.ports.out.EventRepository;
 import sparta.firstevent.application.ports.out.ParticipantRepository;
 import sparta.firstevent.domain.event.Determinator;
 import sparta.firstevent.domain.event.Event;
@@ -23,13 +24,15 @@ public class ParticipantCommandService implements ParticipantManageUseCase {
     private final ParticipantGetUseCase participantGetUseCase;
 
     private final ParticipantRepository participantRepository;
+    private final EventRepository eventRepository;
 
     private final Determinator determinator;
 
     @Override
     public Participant apply(Long eventId, Long memberId) {
         validateApply(eventId, memberId);
-
+        // participant가 event에 apply할 때마다 event의 participantCount++
+        eventRepository.updateParticipantsCount(eventId);
         return participantRepository.save(Participant.regist(memberId, eventId, determinator));
     }
 

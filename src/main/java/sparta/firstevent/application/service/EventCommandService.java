@@ -19,4 +19,6 @@ public class EventCommandService implements EventManageUseCase {
     private final EventGetUseCase eventGetUseCase;
     private final Determinator determinator;
 
+
+
 }
